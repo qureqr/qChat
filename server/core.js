@@ -4,6 +4,10 @@ const server = net.createServer((socket) => {
     socket.on('data', (data) => {
         console.log('Получено сообщение от клиента:', data.toString());
     });
+
+    socket.on('error', (err) => {
+        console.log('Произошла ошибка:', err.message);
+    });
 });
 
 server.listen(8000, () => {
