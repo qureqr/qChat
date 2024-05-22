@@ -3,7 +3,6 @@ const { net } = require('../shared/const.js');
 const server = net.createServer((socket) => {
     socket.on('data', (data) => {
         console.log('Получено сообщение от клиента:', data.toString());
-        socket.write('Сообщение получено и обработано');
     });
 });
 
