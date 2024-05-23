@@ -1,6 +1,7 @@
 const readline = require('readline');
 const { net } = require('../shared/const.js');
 const { EventEmitter } = require('events');
+const { encrypt, decrypt } = require('../shared/crypto.js');
 
 const client = new net.Socket();
 const eventEmitter = new EventEmitter();
@@ -11,7 +12,8 @@ client.connect(8000, 'localhost', () => {
 });
 
 client.on('data', (data) => {
-    console.log('\nПолучено сообщение:', data.toString());
+    const decryptedMessage = decrypt(JSON.parse(data));
+    console.log('\nПолучено сообщение:', decryptedMessage);
     process.stdout.write('Введите сообщение: ');
 });
 
@@ -25,7 +27,8 @@ eventEmitter.on('connected', () => {
     rl.prompt();
 
     rl.on('line', (line) => {
-        client.write(line);
+        const encryptedMessage = encrypt(line);
+        client.write(JSON.stringify(encryptedMessage));
         rl.prompt();
     });
 });
