@@ -12,7 +12,7 @@ client.connect(8000, 'localhost', () => {
 });
 
 client.on('data', (data) => {
-    console.log('\nПолучено сообщение от сервера:', data.toString());
+    console.log('\nПолучено сообщение:', data.toString());
     process.stdout.write('Введите сообщение: ');
 });
 
