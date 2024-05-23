@@ -1,4 +1,3 @@
-
 const getInput = require('../shared/utils.js');
 const { net } = require('../shared/const.js');
 
