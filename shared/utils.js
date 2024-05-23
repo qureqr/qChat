@@ -1,17 +1,18 @@
 const readline = require('readline');
+const { EventEmitter } = require('events');
 
-function getInput(prompt) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-    return new Promise((resolve) => {
-        rl.question(prompt, (answer) => {
-            resolve(answer);
-            rl.close();
-        });
+const eventEmitter = new EventEmitter();
+
+function getInput() {
+    rl.on('line', (line) => {
+        eventEmitter.emit('message', line);
     });
+    return eventEmitter;
 }
 
 module.exports = getInput;
