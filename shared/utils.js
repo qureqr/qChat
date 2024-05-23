@@ -15,4 +15,8 @@ function getInput() {
     return eventEmitter;
 }
 
-module.exports = getInput;
+function closeInput() {
+    rl.close();
+}
+
+module.exports = { getInput, closeInput };
