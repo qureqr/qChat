@@ -1,4 +1,3 @@
-// Клиент
 const readline = require('readline');
 const { net } = require('../shared/const.js');
 const { EventEmitter } = require('events');
