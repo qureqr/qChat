@@ -58,10 +58,6 @@ eventEmitter.on('connected', () => {
             };
             const encryptedMessage = encrypt(JSON.stringify(messageObject));
             client.write(JSON.stringify(encryptedMessage));
-
-            // Выводим отправленное сообщение с никнеймом
-            console.log(`${nickname}: ${line}`);
-
             rl.prompt();
         }
     });
