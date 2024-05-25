@@ -1,4 +1,3 @@
-// Сервер
 const { net } = require('../shared/const.js');
 
 const sockets = [];
