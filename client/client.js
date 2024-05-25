@@ -23,7 +23,7 @@ client.on('data', (data) => {
     // Очищаем текущую строку ввода перед выводом сообщения
     readline.cursorTo(process.stdout, 0);
     process.stdout.clearLine();
-    console.log(`\n${messageObject.nickname}: ${messageObject.message}`);
+    console.log(`${messageObject.nickname}: ${messageObject.message}`);
 
     // Возвращаем приглашение для ввода сообщения
     rl.prompt(true);
@@ -38,7 +38,7 @@ eventEmitter.on('connected', () => {
     rl.question('Введите ваш никнейм: ', (name) => {
         nickname = name;
         isNicknameSet = true; // Устанавливаем флаг, что никнейм введен
-        rl.setPrompt('Введите сообщение: ');
+        rl.setPrompt(`${nickname}: `);
         rl.prompt();
     });
 
@@ -48,7 +48,7 @@ eventEmitter.on('connected', () => {
             rl.question('Введите ваш никнейм: ', (name) => {
                 nickname = name;
                 isNicknameSet = true; // Устанавливаем флаг, что никнейм введен
-                rl.setPrompt('Введите сообщение: ');
+                rl.setPrompt(`${nickname}: `);
                 rl.prompt();
             });
         } else {
@@ -58,6 +58,10 @@ eventEmitter.on('connected', () => {
             };
             const encryptedMessage = encrypt(JSON.stringify(messageObject));
             client.write(JSON.stringify(encryptedMessage));
+
+            // Выводим отправленное сообщение с никнеймом
+            console.log(`${nickname}: ${line}`);
+
             rl.prompt();
         }
     });
