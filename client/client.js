@@ -10,7 +10,17 @@ let nickname = '';
 let isNicknameSet = false;
 
 client.connect(8000, 'localhost', () => {
-    console.log('Подключено к серверу');
+    console.log(
+        ('                  d8b                        \n' +
+            '                  ?88                   d8P  \n' +
+            '                   88b               d888888P\n' +
+            '.d88b,.88P d8888b  888888b  d888b8b    ?88\'  \n' +
+            '88P  `88P\'d8P\' `P  88P `?8bd8P\' ?88    88P   \n' +
+            '?8b  d88  88b     d88   88P88b  ,88b   88b   \n' +
+            '`?888888  `?888P\'d88\'   88b`?88P\'`88b  `?8b  \n' +
+            '    `?88                                     \n' +
+            '      88b                                    \n' +
+            '      ?8P                                    '));
     eventEmitter.emit('connected');
 });
 
